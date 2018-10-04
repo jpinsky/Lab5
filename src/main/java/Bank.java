@@ -29,6 +29,11 @@ public class Bank {
         /*
          * Implement this function
          */
+        if (bankAccount.getAccountBalance() - amount >= 0) {
+            bankAccount.setAccountBalance(bankAccount.getAccountBalance() - amount);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -45,6 +50,8 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setAccountBalance(bankAccount.getAccountBalance() + amount);
+        return true;
     }
 
     /**
@@ -64,6 +71,12 @@ public class Bank {
         /*
          * Implement this function
          */
+        if (source.getAccountBalance() - amount >= 0) {
+            source.setAccountBalance(source.getAccountBalance() - amount);
+            destination.setAccountBalance(destination.getAccountBalance() + amount);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -77,6 +90,7 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setOwnerName(name);
     }
 
     public static int totalAccounts = 0;
@@ -89,6 +103,7 @@ public class Bank {
         /*
          * Implement this function
          */
+        return totalAccounts;
     }
 
     /**
@@ -111,13 +126,18 @@ public class Bank {
 
         // Deposit money to both accounts and print new balance
         bank.depositMoney(account1, 1000.0);
+        System.out.println("account 1: " + account1.getAccountBalance());
         bank.depositMoney(account2, 5000.0);
+        System.out.println("account 2: " + account2.getAccountBalance());
 
         // Withdraw money from Account 2 and print new balance
         bank.withdrawMoney(account2, 200.0);
+        System.out.println("account 2: " + account2.getAccountBalance());
 
         // Transfer money from Account 2 to Account 1 and print new balances
         bank.transferMoney(account2, account1, 350.0);
+        System.out.println("account 1: " + account1.getAccountBalance());
+        System.out.println("account 2: " + account2.getAccountBalance());
 
         // Print number of accounts
         System.out.print("Number of active accounts at " + bank.bankName + " are ");
